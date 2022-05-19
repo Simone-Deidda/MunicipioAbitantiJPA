@@ -21,6 +21,8 @@ public interface MunicipioService {
 
 	public List<Municipio> cercaTuttiIMunicipiConMinorenni() throws Exception;
 
+	public List<Municipio> cercaTuttiIMunicipiConInizialeDescrizione(String inizialeDescrizione) throws Exception;
+	
 	//per injection
 	public void setMunicipioDAO(MunicipioDAO municipioDAO);
 }

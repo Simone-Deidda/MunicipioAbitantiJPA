@@ -5,6 +5,7 @@ import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.TypedQuery;
 
+import it.prova.municipioAbitanteJPA.model.Abitante;
 import it.prova.municipioAbitanteJPA.model.Municipio;
 
 public class MunicipioDAOImpl implements MunicipioDAO {
@@ -67,14 +68,14 @@ public class MunicipioDAOImpl implements MunicipioDAO {
 	// TO DO PER ESERCIZIO
 	@Override
 	public List<Municipio> findAllByAbitantiMinorenni() throws Exception {
-		// TODO Auto-generated method stub
-		return null;
+		TypedQuery<Municipio> query = entityManager.createQuery("SELECT DISTINCT m FROM Municipio m JOIN m.abitanti a WHERE a.eta < 18", Municipio.class);
+		return query.getResultList();
 	}
 
 	@Override
 	public List<Municipio> findAllByDescrizioneIniziaCon(String iniziale) throws Exception {
-		// TODO Auto-generated method stub
-		return null;
+		TypedQuery<Municipio> query = entityManager.createQuery("FROM Municipio m WHERE m.descrizione LIKE ?1", Municipio.class);
+		return query.setParameter(1, iniziale + "%").getResultList();
 	}
 
 }

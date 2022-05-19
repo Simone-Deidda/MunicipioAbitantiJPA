@@ -1,6 +1,7 @@
 package it.prova.municipioAbitanteJPA.model;
 
 import java.util.HashSet;
+import java.util.Objects;
 import java.util.Set;
 
 import javax.persistence.Column;
@@ -84,5 +85,23 @@ public class Municipio {
 		return "Municipio [id=" + id + ", descrizione=" + descrizione + ", codice=" + codice + ", ubicazione="
 				+ ubicazione + "]";
 	}
-	
+
+	@Override
+	public int hashCode() {
+		return Objects.hash(abitanti, codice, descrizione, id, ubicazione);
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Municipio other = (Municipio) obj;
+		return Objects.equals(codice, other.codice) && Objects.equals(descrizione, other.descrizione)
+				&& Objects.equals(id, other.id) && Objects.equals(ubicazione, other.ubicazione);
+	}
+
 }

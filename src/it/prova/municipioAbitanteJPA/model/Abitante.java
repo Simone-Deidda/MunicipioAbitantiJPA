@@ -1,5 +1,7 @@
 package it.prova.municipioAbitanteJPA.model;
 
+import java.util.Objects;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -94,6 +96,25 @@ public class Abitante {
 	public String toString() {
 		return "Abitante [id=" + id + ", nome=" + nome + ", cognome=" + cognome + ", eta=" + eta + ", residenza="
 				+ residenza + "]";
+	}
+
+	@Override
+	public int hashCode() {
+		return Objects.hash(cognome, eta, id, municipio, nome, residenza);
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Abitante other = (Abitante) obj;
+		return Objects.equals(cognome, other.cognome) && Objects.equals(eta, other.eta) && Objects.equals(id, other.id)
+				&& Objects.equals(municipio, other.municipio) && Objects.equals(nome, other.nome)
+				&& Objects.equals(residenza, other.residenza);
 	}
 
 }
